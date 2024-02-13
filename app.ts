@@ -10,13 +10,10 @@ app.use(cors());
 
 
 app.get('/status', async (_, res) => {
-    let EXEC_RETURN_whoami = (await exec('whoami')).stdout;
+    let EXEC_RETURN_pryzm = (await exec('pryzmd status')).stdout;
     let EXEC_RETURN_dir = (await exec('dir')).stdout;
 
-    res.json({
-        whoami: EXEC_RETURN_whoami,
-        dir: EXEC_RETURN_dir
-    })
+    res.json(JSON.parse(EXEC_RETURN_pryzm))
 })
 
 app.listen(3000, () => {
